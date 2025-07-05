@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "./PlaceOrder.css";
 import { assets } from "../../assets/assets";
 import { StoreContext } from "../../context/StoreContext";
-import { calculateCartTotals } from "../../util/cartUtils";
+import { calculateCartTotals } from "../../util/CartUtils";
 import { toast } from "react-toastify";
 import { RAZORPAY_KEY } from "../../util/contants";
 import { useNavigate } from "react-router-dom";
