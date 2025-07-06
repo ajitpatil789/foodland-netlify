@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api";
+// const API_URL = "http://localhost:8080/api";
+const API_URL = "https://foodiesapi-production-1e97.up.railway.app/api";
 
 export const registerUser = async (data) => {
   try {
