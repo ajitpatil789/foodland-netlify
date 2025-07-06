@@ -25,8 +25,9 @@ const FoodDetails = () => {
 
   const addToCart = () => {
     increaseQty(data.id);
-
-    navigate("/cart");
+    if (token) {
+      navigate("/cart");
+    }
   };
   return (
     <section className="py-5">
