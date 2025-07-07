@@ -1,11 +1,9 @@
-import axios from "axios";
-
-const API_URL = "https://foodiesapi-production-1e97.up.railway.app/api/cart";
+import API from "./axios";
 
 export const addToCart = async (foodId, token) => {
   try {
-    await axios.post(
-      API_URL,
+    await API.post(
+      "/cart",
       { foodId },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -18,8 +16,8 @@ export const addToCart = async (foodId, token) => {
 
 export const removeQtyFromCart = async (foodId, token) => {
   try {
-    await axios.post(
-      API_URL + "/remove",
+    await API.post(
+      "/cart/remove",
       { foodId },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -32,18 +30,19 @@ export const removeQtyFromCart = async (foodId, token) => {
 
 export const getCartData = async (token) => {
   try {
-    const response = await axios.get(API_URL, {
+    const response = await API.get("/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data.items;
   } catch (error) {
     console.error("Error while fetching the cart data", error);
-    return {}; // Return an empty object to avoid undefined errors
+    return {};
   }
 };
+
 export const clearCartItems = async (token, setQuantities) => {
   try {
-    await axios.delete(API_URL, {
+    await API.delete("/cart", {
       headers: { Authorization: `Bearer ${token}` },
     });
     setQuantities({});

@@ -1,11 +1,8 @@
-import axios from "axios";
-
-// const API_URL = "http://localhost:8080/api";
-const API_URL = "https://foodiesapi-production-1e97.up.railway.app/api";
+import API from "./axios";
 
 export const registerUser = async (data) => {
   try {
-    const response = await axios.post(API_URL + "/register", data);
+    const response = await API.post("/register", data);
     return response;
   } catch (error) {
     throw error;
@@ -14,7 +11,7 @@ export const registerUser = async (data) => {
 
 export const login = async (data) => {
   try {
-    const response = await axios.post(API_URL + "/login", data);
+    const response = await API.post("/login", data);
     return response;
   } catch (error) {
     throw error;

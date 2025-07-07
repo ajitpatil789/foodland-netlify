@@ -1,50 +1,48 @@
-import axios from "axios";
-
-const API_URL = "https://foodiesapi-production-1e97.up.railway.app/api/orders";
+import API from "./axios"; // uses baseURL from .env
 
 export const fetchUserOrders = async (token) => {
   try {
-    const response = await axios.get(API_URL, {
+    const response = await API.get("/orders", {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
   } catch (error) {
-    console.error("Error occured while fetching the orders", error);
+    console.error("Error occurred while fetching the orders", error);
     throw error;
   }
 };
 
 export const createOrder = async (orderData, token) => {
   try {
-    const response = await axios.post(API_URL + "/create", orderData, {
+    const response = await API.post("/orders/create", orderData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
   } catch (error) {
-    console.error("Error occured while creating the order", error);
+    console.error("Error occurred while creating the order", error);
     throw error;
   }
 };
 
 export const verifyPayment = async (paymentData, token) => {
   try {
-    const response = await axios.post(API_URL + "/verify", paymentData, {
+    const response = await API.post("/orders/verify", paymentData, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.status === 200;
   } catch (error) {
-    console.error("Error occured while verifing the payment", error);
+    console.error("Error occurred while verifying the payment", error);
     throw error;
   }
 };
 
 export const deleteOrder = async (orderId, token) => {
   try {
-    await axios.delete(API_URL + "/" + orderId, {
+    await API.delete(`/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
-    console.error("Error occured while deleting the order", error);
+    console.error("Error occurred while deleting the order", error);
     throw error;
   }
 };
