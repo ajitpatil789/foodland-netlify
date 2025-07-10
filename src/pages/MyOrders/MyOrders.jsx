@@ -24,11 +24,11 @@ const MyOrders = () => {
   return (
     <div className="container">
       <div className="py-5 row justify-content-center">
-        <div className="col-11 card">
-          <table className="table table-responsive">
-            <tbody>
-              {data.map((order, index) => {
-                return (
+        <div className="col-12 col-md-11 card px-2">
+          <div className="table-responsive">
+            <table className="table">
+              <tbody>
+                {data.map((order, index) => (
                   <tr key={index}>
                     <td>
                       <img
@@ -36,21 +36,21 @@ const MyOrders = () => {
                         alt=""
                         height={48}
                         width={48}
+                        className="img-fluid"
                       />
                     </td>
                     <td>
-                      {order.orderedItems.map((item, index) => {
-                        if (index === order.orderedItems.length - 1) {
-                          return item.name + " x " + item.quantity;
-                        } else {
-                          return item.name + " x " + item.quantity + ", ";
-                        }
-                      })}
+                      {order.orderedItems.map((item, index) => (
+                        <span key={index}>
+                          {item.name} x {item.quantity}
+                          {index !== order.orderedItems.length - 1 && ", "}
+                        </span>
+                      ))}
                     </td>
                     <td>&#x20B9;{order.amount.toFixed(2)}</td>
                     <td>Items: {order.orderedItems.length}</td>
-                    <td className="fw-bold text-capitalize">
-                      &#x25cf;{order.orderStatus}
+                    <td className="fw-bold text-capitalize text-nowrap">
+                      &#x25cf; {order.orderStatus}
                     </td>
                     <td>
                       <button
@@ -61,10 +61,10 @@ const MyOrders = () => {
                       </button>
                     </td>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
