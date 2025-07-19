@@ -3,6 +3,7 @@ import API from "./axios";
 export const fetchFoodList = async () => {
   try {
     const response = await API.get("/foods");
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log("Error while fetching food list:", error);
